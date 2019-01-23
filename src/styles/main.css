@@ -63,3 +63,10 @@ i.fas {
 div.toggle {
 	margin-left: auto;
 }
+
+/* Video List */
+
+.divided.list {
+	height: 70vh;
+	overflow-y: scroll;
+}

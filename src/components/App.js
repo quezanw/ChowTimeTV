@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 import { connect } from 'react-redux';
 import { fetchNewVideos } from '../actions';
 
@@ -19,7 +20,7 @@ class App extends React.Component {
       <div className="ui grid">
         <div className="ui row">
           <div className="eleven wide column">
-            Video Details
+            <VideoDetail />
           </div>
           <div className="five wide column">
             <VideoList/>

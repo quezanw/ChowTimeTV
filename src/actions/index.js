@@ -22,6 +22,6 @@ export const selectVideo = video => {
 
 export const fetchNewVideos = () => async dispatch => {
   const response = await reddit.get('/new.json', { params: {} });
-  console.log(response);
   dispatch({ type: FETCH_NEW_VIDEOS, payload: response.data.data.children});
+  dispatch(selectVideo(response.data.data.children[0]));
 }
