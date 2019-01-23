@@ -25,3 +25,17 @@ export const fetchNewVideos = () => async dispatch => {
   dispatch({ type: FETCH_NEW_VIDEOS, payload: response.data.data.children});
   dispatch(selectVideo(response.data.data.children[0]));
 }
+
+export const fetchHotVideos = () => async dispatch => {
+  const response = await reddit.get('/top.json?t=day', { params: {} });
+  dispatch({ type: FETCH_HOT_VIDEOS, payload: response.data.data.children});
+  dispatch(selectVideo(response.data.data.children[0]));
+}
+
+
+export const fetchFiveSevenVideos = () => async dispatch => {
+  const response = await reddit.get('/search.json?q=flair_name%3A"5-7%20Minutes"&restrict_sr=1', { params: {} });
+  dispatch({ type: FETCH_HOT_VIDEOS, payload: response.data.data.children});
+  dispatch(selectVideo(response.data.data.children[0]));
+}
+

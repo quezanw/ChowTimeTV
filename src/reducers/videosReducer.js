@@ -13,6 +13,10 @@ export default (videos = [], action) => {
   switch(action.type) {
     case FETCH_NEW_VIDEOS:
       return action.payload;
+    case FETCH_HOT_VIDEOS:
+      return action.payload;
+    case FETCH_FIVESEVEN_VIDEOS:
+      return action.payload;
     default:
       return videos;
   }

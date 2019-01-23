@@ -1,6 +1,7 @@
 import './VideoItem.css';
 import React from 'react';
 import { connect } from 'react-redux';
+import { selectVideo } from '../actions';
 
 class VideoItem extends React.Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class VideoItem extends React.Component {
     const video = this.props.video;
     return (
       <div key={video.id} 
-           className="video-item item">
+           className="video-item item"
+           onClick={ () => this.props.selectVideo(video)}
+           >
         <img
           className="ui image" 
           src={video.data.media.oembed.thumbnail_url} 
@@ -25,4 +28,4 @@ class VideoItem extends React.Component {
 
 }
 
-export default connect(null)(VideoItem);
+export default connect(null,{ selectVideo })(VideoItem);
