@@ -68,7 +68,7 @@ class Header extends React.Component {
               this.props.fetchNewVideos()
             }}>
               new
-            </a> 
+          </a> 
           {this.renderTabs()}
         </div>
       </div>
