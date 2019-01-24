@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { 
   fetchNewVideos, 
   fetchHotVideos,
-  fetchFiveSevenVideos
+  fetchFiveSevenVideos,
+  fetchSevenTenVideos,
+  fetchTenFifteenVideos,
+  fetchHalfHourVideos
 } from '../actions';
 
 class Header extends React.Component {
@@ -26,7 +29,10 @@ class Header extends React.Component {
     // const tabValues = ['new', 'hot', '5 - 7', '7 - 10', '10 - 15', '30+'];
     const tabValues = [
       {'func': this.props.fetchHotVideos, 'val': 'hot'},
-      {'func': this.props.fetchFiveSevenVideos, 'val': '5 - 7'}
+      {'func': this.props.fetchFiveSevenVideos, 'val': '5 - 7'},
+      {'func': this.props.fetchSevenTenVideos, 'val': '7 - 10'},
+      {'func': this.props.fetchTenFifteenVideos, 'val': '10 - 15'},
+      {'func': this.props.fetchHalfHourVideos, 'val': '30+'}
     ];
 
     return tabValues.map(obj => {
@@ -78,8 +84,11 @@ class Header extends React.Component {
 
 
 export default connect(null, 
-  { fetchNewVideos, 
+  { 
+    fetchNewVideos, 
     fetchHotVideos,
-    fetchFiveSevenVideos
-  })
-  (Header);
+    fetchFiveSevenVideos,
+    fetchSevenTenVideos,
+    fetchTenFifteenVideos,
+    fetchHalfHourVideos
+  })(Header);

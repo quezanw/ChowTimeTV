@@ -3,9 +3,9 @@ import {
   FETCH_NEW_VIDEOS,
   FETCH_HOT_VIDEOS,
   FETCH_FIVESEVEN_VIDEOS,
-  // FETCH_SEVENTEN_VIDEOS,
-  // FETCH_TENFIFTEEN_VIDEOS,
-  // FETCH_HALFHOUR_VIDEOS 
+  FETCH_SEVENTEN_VIDEOS,
+  FETCH_TENFIFTEEN_VIDEOS,
+  FETCH_HALFHOUR_VIDEOS 
 } 
 from '../actions/types';
 
@@ -16,6 +16,12 @@ export default (videos = [], action) => {
     case FETCH_HOT_VIDEOS:
       return action.payload;
     case FETCH_FIVESEVEN_VIDEOS:
+      return action.payload;
+    case FETCH_SEVENTEN_VIDEOS:
+      return action.payload;
+    case FETCH_TENFIFTEEN_VIDEOS:
+      return action.payload;
+    case FETCH_HALFHOUR_VIDEOS:
       return action.payload;
     default:
       return videos;
