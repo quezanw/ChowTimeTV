@@ -54,8 +54,8 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className="header-comp ui">
-        <div className="header ui segment">
+      <div className="header-component ui">
+        <div className="header-container header ui segment">
           <h1>ChowTime TV</h1>
           <i className="fas fa-utensils"></i>
           <i className="fas fa-tv"></i>

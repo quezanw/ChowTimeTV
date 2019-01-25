@@ -20,15 +20,17 @@ class VideoDetail extends React.Component {
       )
     }
     const iFrameHTML = video.data.secure_media.oembed.html;
-
+    const redditLink = `https://www.reddit.com/${video.data.permalink}`;
     return (
-      <div>
+      <div className="video-detail">
         <div className="ui embed">
           {ReactHtmlParser(this.htmlDecode(iFrameHTML))}
         </div>
         <div className="ui segment">
           <h4 className="ui header">{video.data.title}</h4>
-          {/* <p className="">{video.snippet.description}</p>     */}
+          <p className="">
+           <a href={redditLink} rel="noopener noreferrer" target="_blank">Reddit Thread</a>
+          </p>    
         </div>
 
       </div>
