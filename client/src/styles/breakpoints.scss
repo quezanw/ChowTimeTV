@@ -4,10 +4,13 @@
   /* APP */
   .app-container {
     padding: 0rem;
+    grid-template-rows: 15% 2fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   /* header component */
   .header-component {
+    grid-column: auto;
 
     .header-segment {
 
@@ -22,10 +25,22 @@
         margin-left: 2px;
       }
     }
+
+    .item {
+      padding: .85rem !important;
+    }
+  }
+  
+  /* Video Detail */
+  .video-detail-container {
+    grid-column: 1;
+    grid-row: 2 / 3;
   }
 
-  .item {
-    padding: .85rem !important;
+  .video-list {
+    overflow: visible;
+    grid-column: 1;
+    grid-row: 3;
   }
 
 }
