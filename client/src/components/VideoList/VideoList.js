@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import VideoItem from '../VideoItem/VideoItem';
+import './VideoList.scss';
 
 class VideoList extends React.Component {
 
@@ -16,7 +17,7 @@ class VideoList extends React.Component {
     });
 
     return (
-      <div className="ui relaxed divided list">
+      <div className="video-list">
         {renderList}
       </div>
     );

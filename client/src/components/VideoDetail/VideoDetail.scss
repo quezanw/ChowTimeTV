@@ -1,0 +1,27 @@
+.video-detail-container {
+  grid-column: 1 / 7;
+  grid-row: 2 / 3;
+
+  .video {
+    margin-bottom: .5rem;
+  }
+
+  .video-info {
+    // display: flex;
+    background-color: #ffffff;
+    box-shadow: 2px 3px 10px #e4e4e4;
+    padding: 1rem;
+    border-radius: .25rem;
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .fa-reddit {
+      margin-top: .75rem;
+      font-size: 1.5rem;
+    }
+  }
+
+}

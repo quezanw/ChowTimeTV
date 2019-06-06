@@ -16,8 +16,8 @@ class App extends React.Component {
     return (
       <div className="app-container">
         <Header />
-        {/* <VideoDetail />
-        <VideoList/> */}
+        <VideoDetail />
+        <VideoList/>
     </div>
     );
   }

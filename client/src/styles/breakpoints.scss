@@ -7,18 +7,20 @@
   }
 
   /* header component */
-  .header-segment {
-    // padding: .25rem;
+  .header-component {
 
-    h1 { font-size: 1.5rem; }
+    .header-segment {
 
-    i:nth-child(2) {
-      margin-left: 10px;
-    }
+      h1 { font-size: 1.5rem; }
 
-    i { 
-      font-size: 1rem; 
-      margin-left: 2px;
+      i:nth-child(2) {
+        margin-left: 10px;
+      }
+
+      i { 
+        font-size: 1rem; 
+        margin-left: 2px;
+      }
     }
   }
 

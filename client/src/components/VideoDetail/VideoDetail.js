@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
+import './VideoDetail.scss';
 
 class VideoDetail extends React.Component {
   // decodes escaped html
@@ -22,17 +23,16 @@ class VideoDetail extends React.Component {
     const iFrameHTML = video.data.secure_media.oembed.html;
     const redditLink = `https://www.reddit.com/${video.data.permalink}`;
     return (
-      <div className="video-detail">
-        <div className="ui embed">
+      <div className="video-detail-container">
+        <div className="video ui embed">
           {ReactHtmlParser(this.htmlDecode(iFrameHTML))}
         </div>
-        <div className="ui segment">
-          <h4 className="ui header">{video.data.title}</h4>
-          <p className="">
-           <a href={redditLink} rel="noopener noreferrer" target="_blank">Reddit Thread</a>
-          </p>    
+        <div className="video-info">
+          <h2>{video.data.title}</h2>
+          <a href={redditLink} rel="noopener noreferrer" target="_blank">
+            <i className="fab fa-reddit"></i>
+          </a>
         </div>
-
       </div>
     );
   }

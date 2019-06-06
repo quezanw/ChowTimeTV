@@ -1,5 +1,5 @@
 .header-component {
-  grid-column: 1 / span 3;
+  grid-column: 1 / 11;
   // outline: 1px solid gray;
 }
 
@@ -10,11 +10,11 @@
   align-items: center;
   background-color: #ffffff;
   box-shadow: 2px 3px 10px #e4e4e4;
-  padding: 1rem;
+  padding: 1.25rem;
   border-radius: .25rem;
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-family: 'Fira Sans', sans-serif;
     word-spacing: -5px;
   }
