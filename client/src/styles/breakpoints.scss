@@ -1,0 +1,29 @@
+// Phone layout
+
+@media only screen and (min-width : 320px) and (max-width: 480px){
+  /* APP */
+  .app-container {
+    padding: 0rem;
+  }
+
+  /* header component */
+  .header-segment {
+    // padding: .25rem;
+
+    h1 { font-size: 1.5rem; }
+
+    i:nth-child(2) {
+      margin-left: 10px;
+    }
+
+    i { 
+      font-size: 1rem; 
+      margin-left: 2px;
+    }
+  }
+
+  .item {
+    padding: .85rem !important;
+  }
+
+}

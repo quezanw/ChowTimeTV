@@ -1,0 +1,13 @@
+// FONTS
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans&display=swap');
+
+.app-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 15% 1fr 1fr;
+  background-color: #f9f9f9;
+  height: 100vh;
+	padding: 1rem 4rem;
+}
+
+@import '../../styles/main.scss';
