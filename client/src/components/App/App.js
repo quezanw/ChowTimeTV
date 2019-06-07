@@ -10,7 +10,6 @@ import './App.scss';
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchNewVideos();
-
   }
 
   render() {

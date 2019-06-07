@@ -4,5 +4,6 @@ import axios from 'axios';
 // const KEY = 'AIzaSyD8tolblc1GwGa5ektFp9S81H3ocA9uYWA';
 
 export default axios.create({
-  baseURL: 'https://www.reddit.com/r/mealtimevideos',
+  baseURL: 'http://localhost:3001',
+  // baseURL: 'https://www.reddit.com/r/mealtimevideos',
 });

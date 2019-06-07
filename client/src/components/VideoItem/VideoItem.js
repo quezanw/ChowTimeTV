@@ -11,18 +11,18 @@ class VideoItem extends React.Component {
 
   renderImg(video) {
     // console.log(video.data);
-    let imgSrc = video.data.secure_media;
+    let imgSrc = video.secure_media;
     if(!imgSrc) {
       imgSrc = video_placeholder;
     } else {
-      imgSrc = video.data['secure_media'].oembed['thumbnail_url']
+      imgSrc = video['secure_media'].oembed['thumbnail_url']
       imgSrc = imgSrc.replace('hqdefault', 'mqdefault');
     }
     return (
       <img
         className="" 
         src={imgSrc} 
-        alt={video.data.title}
+        alt={video.title}
       />
     );
   }
@@ -43,7 +43,7 @@ class VideoItem extends React.Component {
           {this.renderImg(video)}
         </div>
         <div className="video-item-title">
-          {this.adjustTitleLength(video.data.title)}
+          {this.adjustTitleLength(video.title)}
         </div>
       </div>
     );

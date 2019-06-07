@@ -10,7 +10,7 @@ class VideoList extends React.Component {
       // if(!video.data.stickied)
       return (
         <VideoItem
-          key={video.data.id}
+          key={video.title}
           video={video}
         />
       );
