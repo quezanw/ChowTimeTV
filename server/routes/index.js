@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var snoowrap = require('snoowrap');
-var config = require('../../config');
+var config = require('../../config')
 
 
 const r = new snoowrap({
