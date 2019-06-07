@@ -5,10 +5,12 @@ import VideoDetail from '../VideoDetail/VideoDetail';
 import { connect } from 'react-redux';
 import { fetchNewVideos } from '../../actions';
 import './App.scss';
+// import snoowrap from 'snoowrap';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchNewVideos();
+
   }
 
   render() {
