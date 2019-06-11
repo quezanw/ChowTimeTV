@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { connect } from 'react-redux';
+import RedditAuth from '../RedditAuth/RedditAuth';
 import { 
   fetchNewVideos, 
   fetchHotVideos,
@@ -64,6 +65,7 @@ class Header extends React.Component {
             <input type="checkbox" name="public"/>
             <label>Night Mode</label>
           </div> */}
+          <RedditAuth/>
         </div>
         <div className="ui secondary pointing menu header-tabs">
           {/* add active classname to change pointer */}

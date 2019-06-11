@@ -26,7 +26,6 @@ class VideoDetail extends React.Component {
       <div className="video-detail-container">
         <div className="video ui embed">
           {ReactHtmlParser(iFrameHTML)}
-          
           {/* {ReactHtmlParser(this.htmlDecode(iFrameHTML))} */}
         </div>
         <div className="video-info">

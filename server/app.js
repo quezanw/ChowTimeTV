@@ -4,11 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(session({
+  secret: 'keyboardkitteh',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 },
+  count: 0
+}));
 
 app.use(cors());
 
