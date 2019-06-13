@@ -13,7 +13,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.props.videos)
     return (
       <div className="app-container">
         <Header />

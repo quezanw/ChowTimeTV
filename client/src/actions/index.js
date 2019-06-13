@@ -29,17 +29,23 @@ export const selectVideo = video => {
   }
 }
 
-export const signIn = () =>  async dispatch => {
-  // const response await 
-  const response = await reddit.get('/login');
-  console.log('signIn hit');
-  // console.log(response);
-}
+// export const signIn = () =>  async dispatch => {
+//   // const response await 
+//   const response = await reddit.get('/login');
+//   console.log('signIn hit');
+//   // console.log(response);
+// }
+
+export const signOut = () => async dispatch => {
+  const response = await reddit.get('/logout');
+  console.log(response.data.signInStatus);
+  dispatch({ type: "SIGNOUT", payload: response.data.signInStatus });
+};
 
 export const signInStatus = () => async dispatch => {
-  const response =  await reddit.get('/status');
-  console.log(response);
-  dispatch({ type: "SIGNIN", payload: response.signInStatus});
+  const response =  await reddit.get('/');
+  console.log(response.data.signInStatus);
+  dispatch({ type: "SIGNIN", payload: response.data.signInStatus});
 }
 
 export const fetchNewVideos = () => async dispatch => {

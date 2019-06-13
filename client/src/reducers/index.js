@@ -7,5 +7,5 @@ import loginReducer from './loginReducer';
 export default combineReducers({
   videos: videosReducer,
   selectedVideo: selectedVideoReducer,
-  loggedInUser: loginReducer
+  isSignedIn: loginReducer
 });
