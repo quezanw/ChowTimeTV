@@ -4,8 +4,6 @@ var request = require('request');
 // var snoocontroller = require('./controllers/reddit');
 var snoowrap = require('snoowrap');
 var config = require('../../config');
-var querystring =  require('querystring');
-
 
 const mealtimeFetcher = new snoowrap({
   userAgent: config.USER_AGENT,
@@ -15,16 +13,15 @@ const mealtimeFetcher = new snoowrap({
 });;
 
 let user = null;
-
 let refreshToken = null;
 
 var generateRandomString = function (length) {
-	var text = '';
-	var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	for (var i = 0; i < length; i++) {
-		text += possible.charAt(Math.floor(Math.random() * possible.length));
-	}
-	return text;
+  var text = '';
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
 };
 
 router.get('/login', (req, res) => {
@@ -44,14 +41,14 @@ router.get('/login', (req, res) => {
   // );
 });
 
-router.get('/status', (req, res) => {
+router.get('/', (req, res) => {
   if(!req.session.signedIn) {
     req.session.signedIn = false;
+    res.status(200).send({signInStatus: req.session.signedIn});
+  } else {
+    res.status(200).send({signInStatus: req.session.signedIn});
   }
-  res.json({signInStatus: req.session.signedIn});
 });
-
-
 
 router.get('/authorize', (req, res, next) => {
   var code = req.query.code || null;
@@ -71,7 +68,7 @@ router.get('/authorize', (req, res, next) => {
 
   request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
-      console.log(body);
+      // console.log(body);
       refreshToken = body.refresh_token;
       user = new snoowrap({
         userAgent: config.USER_AGENT,
@@ -80,13 +77,18 @@ router.get('/authorize', (req, res, next) => {
         refreshToken: refreshToken
       });
       req.session.signedIn = true;
-      console.log(req.session);
+      req.session.save();
     }
   });
-
   res.redirect('http://localhost:3000');
 });
 
+router.get('/logout', (req, res, next) => {
+  user = null;
+  req.session.signedIn = false;
+  res.send({signInStatus: req.session.signedIn});
+  // res.redirect('http://localhost:3000');
+});
 
 
 router.get('/new', async (req, res, next) => {
