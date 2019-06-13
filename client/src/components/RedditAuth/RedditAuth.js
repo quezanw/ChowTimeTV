@@ -9,9 +9,17 @@ class RedditAuth extends React.Component {
     this.props.signInStatus();
   }
 
+  generateRandomString(length) {
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < length; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  };
+
   renderButton() {
-    const url = 'https://www.reddit.com/api/v1/authorize?client_id=06_IsJue03S96Q&response_type=code&state=this1is2a3random4string5&redirect_uri=http://localhost:3001/authorize&duration=permanent&scope=vote';
-    console.log(this.props.isSignedIn);
+    const url = `https://www.reddit.com/api/v1/authorize?client_id=06_IsJue03S96Q&response_type=code&state=${this.generateRandomString(16)}&redirect_uri=http://localhost:3001/authorize&duration=permanent&scope=vote`;
     if(!this.props.isSignedIn) {
       return (
         <a className='signin-btn oauth-btn' href={url}>
@@ -27,7 +35,6 @@ class RedditAuth extends React.Component {
     }
   }
   
-
   render() {
     return (
       <div className="btn-container">
@@ -38,6 +45,5 @@ class RedditAuth extends React.Component {
 }
 
 const mapStateToProps = state => ({ isSignedIn: state.isSignedIn.isSignedIn });
-
 
 export default connect(mapStateToProps, {signInStatus, signOut})(RedditAuth);

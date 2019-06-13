@@ -15,32 +15,6 @@ const mealtimeFetcher = new snoowrap({
 let user = null;
 let refreshToken = null;
 
-var generateRandomString = function (length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
-
-router.get('/login', (req, res) => {
-  // console.log('hit login');
-  // var state = generateRandomString(16);
-  // let scope = 'vote'
-  // let baseURL = 'https://www.reddit.com/api/v1/authorize?';
-  // res.redirect(baseURL + 
-  //   querystring.stringify({
-  //     client_id: config.CLIENT_ID,
-  //     response_type: 'code',
-  //     state: state,
-  //     redirect_uri: config.REDIRECT_URI,
-  //     duration: 'permanent',
-  //     scope: scope,
-  //   })  
-  // );
-});
-
 router.get('/', (req, res) => {
   if(!req.session.signedIn) {
     req.session.signedIn = false;
@@ -68,7 +42,6 @@ router.get('/authorize', (req, res, next) => {
 
   request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
-      // console.log(body);
       refreshToken = body.refresh_token;
       user = new snoowrap({
         userAgent: config.USER_AGENT,
@@ -87,14 +60,12 @@ router.get('/logout', (req, res, next) => {
   user = null;
   req.session.signedIn = false;
   res.send({signInStatus: req.session.signedIn});
-  // res.redirect('http://localhost:3000');
 });
 
 
 router.get('/new', async (req, res, next) => {
   try {
     const response = await mealtimeFetcher.getSubreddit('mealtimevideos').getNew({limit: 10});
-    // console.log(response);
     res.json({data: response});
   } catch(error) {
     res.send(error);
