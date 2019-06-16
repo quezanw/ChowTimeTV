@@ -8,11 +8,11 @@
   align-items: center;
   background-color: #ffffff;
   box-shadow: 2px 3px 10px #e4e4e4;
-  padding: 1.25rem;
+  padding: 1rem;
   border-radius: .25rem;
 
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'Fira Sans', sans-serif;
     word-spacing: -5px;
   }
@@ -22,7 +22,7 @@
   }
 
   i {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     margin-left: 5px;
   }
 
@@ -30,7 +30,7 @@
 
 .header-tabs {
   // outline: 1px solid pink;
-  margin: .5rem !important;
+  margin: .25rem !important;
   // border-bottom: 0 !important;
 
   .active {

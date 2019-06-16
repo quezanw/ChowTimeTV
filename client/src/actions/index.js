@@ -16,11 +16,7 @@ import {
 } 
 from '../actions/types';
 
-
 import reddit from '../apis/reddit';
-// import redditOAuth from '../apis/redditOAuth';
-// import redditOAuth from '../apis/redditOAuth';
-// https://www.reddit.com/r/mealtimevideos/search.json?q=flair_name%3A%225-7%20Minutes%22&restrict_sr=1
 
 export const selectVideo = video => {
   return {
@@ -29,22 +25,27 @@ export const selectVideo = video => {
   }
 }
 
-// export const signIn = () =>  async dispatch => {
+// export const upvote = async postID => {
+//   const response = await reddit.post('/upvote', { postID: postID });
+//   console.log(response);
+// }
+
+// export const signIn = () =>  {
 //   // const response await 
-//   const response = await reddit.get('/login');
+//   reddit.get('/login');
 //   console.log('signIn hit');
 //   // console.log(response);
 // }
 
 export const signOut = () => async dispatch => {
   const response = await reddit.get('/logout');
-  console.log(response.data.signInStatus);
+  // console.log(response.data.signInStatus);
   dispatch({ type: "SIGNOUT", payload: response.data.signInStatus });
 };
 
 export const signInStatus = () => async dispatch => {
   const response =  await reddit.get('/');
-  console.log(response.data.signInStatus);
+  // console.log(response.data.signInStatus);
   dispatch({ type: "SIGNIN", payload: response.data.signInStatus});
 }
 

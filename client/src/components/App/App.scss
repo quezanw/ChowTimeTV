@@ -4,12 +4,15 @@
 .app-container {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: 20% 1fr 1fr 1fr 1fr;
+  grid-template-rows: 15% 1fr 20%;
   grid-column-gap: 1rem;
-  grid-row-gap: 1.5rem;
+  grid-row-gap: 1rem;
   background-color: #f9f9f9;
-  height: 100vh;
 	padding: 1rem 3rem 5rem 3rem;
+}
+
+.font-style {
+  font-family: 'Fira Sans', sans-serif;
 }
 
 @import '../../styles/main.scss';

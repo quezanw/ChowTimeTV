@@ -18,10 +18,54 @@
       font-weight: bold;
     }
 
-    .fa-reddit {
+
+    .row {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
       margin-top: .75rem;
-      font-size: 1.5rem;
+
+      .col {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        margin-left: auto;
+      }
+
+      .fa-reddit {
+        font-size: 2rem;
+      }
+
+      .fa-arrow-circle-right {
+        font-size: 2rem;
+        
+      }
+
+      .fa-arrow-circle-right:hover {
+        cursor: pointer;
+      }
+
+      #uparrow {
+        margin-left: auto;
+        transform: rotate(-90deg);
+      }
+
+      #downarrow {
+        transform: rotate(90deg);
+      }
+
+      .blueArrow { color: #7193ff }
+      .orangeArrow { color: #FF4500 }
+
+      .likes {
+        margin: 0 .75rem;
+        font-weight: bold;
+        font-family: 'Fira Sans', sans-serif;
+      }
+
     }
+
+
   }
 
 }
