@@ -6,6 +6,7 @@
 
   .img-container {
     // width: 200px;
+    position: relative;
 
     img {
       position: relative;
@@ -17,10 +18,16 @@
     }
 
     .video-length {
-      position: relative;
+      position: absolute;
       color: white;
       font-weight: bold;
-      background-color: black;
+      background-color: rgba(0,0,0, 0.75);
+      z-index: 1;
+      padding: 3px;
+      font-size: .85rem;
+      top: -20%;
+      left: 1%;
+      font-family: 'Fira Sans', sans-serif;
     }
   }
 

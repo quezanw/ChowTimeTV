@@ -35,7 +35,7 @@ class VideoItem extends React.Component {
   }
   render() {
     const video = this.props.video;
-    let regex = /\[\d+:\d+\]/g;
+    let regex = /\d+:\d+/g;
     let videoLength = video.title.match(regex)[0];
     return (
       <div 
@@ -44,7 +44,7 @@ class VideoItem extends React.Component {
           onClick={ () => this.props.selectVideo(video)}>
         <div className="img-container">
           {this.renderImg(video)}
-          <p className="video-length">{videoLength}</p>
+          <span className="video-length">{videoLength}</span>
         </div>
         <div className="video-item-title">
           {this.adjustTitleLength(video.title)}
