@@ -15,7 +15,6 @@ const mealtimeFetcher = new snoowrap({
 let currentFetcher = mealtimeFetcher;
 
 var userFetcher = null;
-// let refreshToken = null;
 
 router.get('/', (req, res) => {
   if(!req.session.signedIn) {

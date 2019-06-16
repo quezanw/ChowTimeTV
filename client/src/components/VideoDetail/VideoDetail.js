@@ -66,7 +66,7 @@ class VideoDetail extends React.Component {
     }
     likes.innerHTML = numLikes;
   }
-  // add like score into redux store - adding a score then logging out doesn't keep the changed score
+  
   submitUpvote(postID, event) {
     let upArrow = event.target;
     let likes = parseInt(upArrow.parentNode.children[1].innerHTML);
