@@ -46,33 +46,30 @@ class VideoDetail extends React.Component {
     );
   }
 
-
   submitDownvote(postID, event) {
     let downArrow = event.target;
-    let likes = downArrow.parentNode.children[1];
+    let likes = parseInt(downArrow.parentNode.children[1].innerHTML);
     let numLikes;
     if(!downArrow.classList.contains('blueArrow')) {
       reddit.post('/downvote', {postID:postID});
       let upArrow = downArrow.parentNode.children[0];
       downArrow.classList.add('blueArrow');
-      likes.classList.add('blueArrow');
       if(upArrow.classList.contains('orangeArrow')) {
-        numLikes = parseInt(likes.innerHTML) - 2;
+        numLikes = likes - 2;
         upArrow.classList.remove('orangeArrow');
       } else {
-        numLikes = parseInt(likes.innerHTML) - 1;
+        numLikes = likes - 1;
       }
     } else {
       downArrow.classList.remove('blueArrow');
-      numLikes = parseInt(likes.innerHTML) + 1;
+      numLikes = likes + 1;
     }
     likes.innerHTML = numLikes;
-
   }
   // add like score into redux store - adding a score then logging out doesn't keep the changed score
   submitUpvote(postID, event) {
     let upArrow = event.target;
-    let likes = upArrow.parentNode.children[1];
+    let likes = parseInt(upArrow.parentNode.children[1].innerHTML);
     let numLikes;
     if(!upArrow.classList.contains('orangeArrow')) {
       reddit.post('/upvote', {postID:postID});
@@ -80,13 +77,13 @@ class VideoDetail extends React.Component {
       upArrow.classList.add('orangeArrow');
       if(downArrow.classList.contains('blueArrow')) {
         downArrow.classList.remove('blueArrow');
-        numLikes = parseInt(likes.innerHTML) + 2;
+        numLikes = likes + 2;
       } else {
-        numLikes = parseInt(likes.innerHTML) + 1;
+        numLikes = likes + 1;
       }
     } else {
       upArrow.classList.remove('orangeArrow');
-      numLikes = parseInt(likes.innerHTML) - 1;
+      numLikes = likes - 1;
     }
     likes.innerHTML = numLikes;
   }
