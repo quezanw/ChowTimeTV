@@ -20,9 +20,10 @@
       position: absolute;
       color: white;
       font-weight: bold;
-      background-color: rgba(0,0,0, 0.75);
+      background-color: rgba(0,0,0, 0.8);
       z-index: 1;
-      padding: 3px;
+      border-radius: 3px;
+      padding: 4px;
       font-size: .85rem;
       top: -20%;
       left: 1%;
@@ -31,7 +32,7 @@
   }
 
   &-title {
-    padding: 0 5px;
+    padding: 5px;
     font-size: 1rem;
     font-weight: bold;
   }

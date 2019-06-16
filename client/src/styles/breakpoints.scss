@@ -27,7 +27,7 @@
     }
 
     .item {
-      padding: .85rem !important;
+      padding: .7rem !important;
     }
   }
   
@@ -35,12 +35,51 @@
   .video-detail-container {
     grid-column: 1;
     grid-row: 2 / 3;
+
+    .video-info {
+
+      h2 {
+        font-size: 1rem;
+      }
+
+    }
+
   }
 
   .video-list {
     overflow: visible;
     grid-column: 1;
     grid-row: 3;
+
+  }
+
+  /* Video Item */
+
+  .video-list {
+
+    .video-item {
+
+      &-title {
+        font-size: .8rem;
+      }
+
+      .img-container {
+
+        img {
+          width: 160px;
+          height: 80px;
+        }
+
+        .video-length {
+          top: 70%;
+          font-size: .75rem;
+
+        }
+
+      }
+
+    }
+
   }
 
 }

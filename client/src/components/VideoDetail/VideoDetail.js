@@ -48,42 +48,42 @@ class VideoDetail extends React.Component {
 
   submitDownvote(postID, event) {
     let downArrow = event.target;
-    let likes = parseInt(downArrow.parentNode.children[1].innerHTML);
-    let numLikes;
+    let likes = downArrow.parentNode.children[1];
+    let numLikes = parseInt(likes.innerHTML);
     if(!downArrow.classList.contains('blueArrow')) {
       reddit.post('/downvote', {postID:postID});
       let upArrow = downArrow.parentNode.children[0];
       downArrow.classList.add('blueArrow');
       if(upArrow.classList.contains('orangeArrow')) {
-        numLikes = likes - 2;
+        numLikes -= 2;
         upArrow.classList.remove('orangeArrow');
       } else {
-        numLikes = likes - 1;
+        numLikes -= 1;
       }
     } else {
       downArrow.classList.remove('blueArrow');
-      numLikes = likes + 1;
+      numLikes += 1;
     }
     likes.innerHTML = numLikes;
   }
   
   submitUpvote(postID, event) {
     let upArrow = event.target;
-    let likes = parseInt(upArrow.parentNode.children[1].innerHTML);
-    let numLikes;
+    let likes = upArrow.parentNode.children[1];
+    let numLikes = parseInt(likes.innerHTML);
     if(!upArrow.classList.contains('orangeArrow')) {
       reddit.post('/upvote', {postID:postID});
       let downArrow = upArrow.parentNode.children[2];
       upArrow.classList.add('orangeArrow');
       if(downArrow.classList.contains('blueArrow')) {
         downArrow.classList.remove('blueArrow');
-        numLikes = likes + 2;
+        numLikes += 2;
       } else {
-        numLikes = likes + 1;
+        numLikes += 1;
       }
     } else {
       upArrow.classList.remove('orangeArrow');
-      numLikes = likes - 1;
+      numLikes -= 1;
     }
     likes.innerHTML = numLikes;
   }
