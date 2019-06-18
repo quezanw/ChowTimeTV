@@ -18,12 +18,27 @@ from '../actions/types';
 
 import reddit from '../apis/reddit';
 
+// export const selectVideo = video => dispatch => {
+//   dispatch(videoLikeStatus(video.likes));
+//   return {
+//     type: 'SELECT_VIDEO',
+//     payload: video
+//   }
+// }
+
 export const selectVideo = video => {
   return {
     type: 'SELECT_VIDEO',
     payload: video
   }
 }
+
+export const videoLikeStatus = status => {
+  return {
+    type: 'LIKE_STATUS',
+    payload: status
+  }
+} 
 
 // export const upvote = async postID => {
 //   const response = await reddit.post('/upvote', { postID: postID });
@@ -54,12 +69,14 @@ export const fetchNewVideos = () => async dispatch => {
   // console.log(response.data);
   dispatch({ type: FETCH_NEW_VIDEOS, payload: response.data.data});
   dispatch(selectVideo(response.data.data[0]));
+  dispatch(videoLikeStatus(response.data.data[0].likes));
 }
 
 export const fetchHotVideos = () => async dispatch => {
   const response = await reddit.get(HOT);
   dispatch({ type: FETCH_HOT_VIDEOS, payload: response.data.data});
   dispatch(selectVideo(response.data.data[0]));
+  dispatch(videoLikeStatus(response.data.data[0].likes));
 }
 
 
@@ -67,22 +84,26 @@ export const fetchFiveSevenVideos = () => async dispatch => {
   const response = await reddit.get(FIVESEVEN);
   dispatch({ type: FETCH_FIVESEVEN_VIDEOS, payload: response.data.data});
   dispatch(selectVideo(response.data.data[0]));
+  dispatch(videoLikeStatus(response.data.data[0].likes));
 }
 
 export const fetchSevenTenVideos = () => async dispatch => {
   const response = await reddit.get(SEVENTEN);
   dispatch({ type: FETCH_SEVENTEN_VIDEOS, payload: response.data.data});
   dispatch(selectVideo(response.data.data[0]));
+  dispatch(videoLikeStatus(response.data.data[0].likes));
 
 }
 export const fetchTenFifteenVideos = () => async dispatch => {
   const response = await reddit.get(TENFIFTEEN);
   dispatch({ type: FETCH_TENFIFTEEN_VIDEOS, payload: response.data.data});
   dispatch(selectVideo(response.data.data[0]));
+  dispatch(videoLikeStatus(response.data.data[0].likes));
 }
 
 export const fetchHalfHourVideos = () => async dispatch => {
   const response = await reddit.get(HALFHOUR);
   dispatch({ type: FETCH_HALFHOUR_VIDEOS, payload: response.data.data});
   dispatch(selectVideo(response.data.data[0]));
+  dispatch(videoLikeStatus(response.data.data[0].likes));
 }

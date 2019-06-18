@@ -15,11 +15,22 @@ class VideoDetail extends React.Component {
 
   renderVotes() {
     const video = this.props.selectedVideo;
-    let arrowClass= "fas fa-arrow-circle-right"
-    let uparrowClass = `
+    let arrowClass= "fas fa-arrow-circle-right";
+    let uparrowClass, downarrowClass;
+    // if( video.likes === true) {
+    //   uparrowClass = `${arrowClass} orangeArrow`;
+    //   downarrowClass = `${arrowClass}`;
+    // } else if( video.likes === false ){
+    //   uparrowClass = `${arrowClass}`;
+    //   downarrowClass = `${arrowClass} blueArrow`;
+    // } else {
+    //   uparrowClass = `${arrowClass}`;
+    //   downarrowClass = `${arrowClass}`;
+    // }
+    uparrowClass = `
       ${arrowClass} 
       ${ video.likes === true ? 'orangeArrow' : '' }`;
-    let downarrowClass = `
+    downarrowClass = `
       ${arrowClass} 
       ${ video.likes === false ? 'blueArrow' : '' }`;
     if(this.props.isSignedIn) {
@@ -35,7 +46,6 @@ class VideoDetail extends React.Component {
             id="downarrow" 
             className={downarrowClass}></i>             
         </div>
-
       );
     }
     return (
@@ -89,6 +99,7 @@ class VideoDetail extends React.Component {
   }
 
   render() {
+    console.log(this.props.videoDetails);
     const video = this.props.selectedVideo;
     if (!video) {
       return ( 
@@ -123,7 +134,8 @@ class VideoDetail extends React.Component {
 const mapStateToProps = state => {
   return { 
     selectedVideo: state.selectedVideo,
-    isSignedIn: state.isSignedIn.isSignedIn 
+    isSignedIn: state.isSignedIn.isSignedIn ,
+    videoDetails: state.videoDetails
   };
 }
 

@@ -1,6 +1,6 @@
 // Phone layout
 
-@media only screen and (min-width : 320px) and (max-width: 480px){
+@media only screen and (min-width : 320px) and (max-width: 480px) {
   /* APP */
   .app-container {
     padding: 0rem;
@@ -46,16 +46,13 @@
 
   }
 
-  .video-list {
-    overflow: visible;
-    grid-column: 1;
-    grid-row: 3;
-
-  }
 
   /* Video Item */
 
   .video-list {
+    overflow: visible;
+    grid-column: 1;
+    grid-row: 3;
 
     .video-item {
 
@@ -81,5 +78,54 @@
     }
 
   }
+
+}
+
+/* Tablet Layout */
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+  .app-container {
+    padding: 0rem;
+    grid-template-rows: 15% auto auto;
+    grid-template-columns: 1fr;
+  }
+
+  .header-component {
+    grid-column: auto;
+  }
+
+  .video-detail-container {
+    grid-column: 1;
+    grid-row: 2 / 3;
+  }
+
+  /* Video Item */
+
+  .video-list {
+    overflow: visible;
+    grid-column: 1;
+    grid-row: 3;
+
+    .video-item {
+
+      // &-title {
+      //   font-size: .8rem;
+      // }
+
+      .img-container {
+
+        // img {
+        //   width: 160px;
+        //   height: 80px;
+        // }
+        .video-length {
+          top: 80%;
+          font-size: .75rem;
+        }
+      }
+    }
+  }
+
 
 }

@@ -29,14 +29,19 @@ class VideoItem extends React.Component {
 
   // implement regex that can remove the timestamp from the title ie: '[9:10]'
   adjustTitleLength(str) {
-    let regex = /\[\d+:\d+\]/g;
-    str = str.replace(regex, '');
+    if(str) {
+      let regex = /\[\d+:\d+\]/g;
+      str = str.replace(regex, '');
+    }
     return str;
   }
   render() {
     const video = this.props.video;
-    let regex = /\d+:\d+/g;
-    let videoLength = video.title.match(regex)[0];
+    let regex = /\d+[:|.]\d+/g;
+    let videoLength = '';
+    if(video.title) {
+      videoLength = video.title.match(regex);
+    }
     return (
       <div 
           key={video.id} 
