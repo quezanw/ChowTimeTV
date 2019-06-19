@@ -13,26 +13,20 @@ class VideoDetail extends React.Component {
     return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
   };
 
-  renderVotes() {
-    const video = this.props.selectedVideo;
-    let arrowClass= "fas fa-arrow-circle-right";
-    let uparrowClass, downarrowClass;
-    // if( video.likes === true) {
-    //   uparrowClass = `${arrowClass} orangeArrow`;
-    //   downarrowClass = `${arrowClass}`;
-    // } else if( video.likes === false ){
-    //   uparrowClass = `${arrowClass}`;
-    //   downarrowClass = `${arrowClass} blueArrow`;
-    // } else {
-    //   uparrowClass = `${arrowClass}`;
-    //   downarrowClass = `${arrowClass}`;
-    // }
-    uparrowClass = `
-      ${arrowClass} 
-      ${ video.likes === true ? 'orangeArrow' : '' }`;
-    downarrowClass = `
-      ${arrowClass} 
-      ${ video.likes === false ? 'blueArrow' : '' }`;
+  updatedVideoItem(videoID, score, likeStatus) {
+    for(var i = 0; i < this.props.videos.length; i++) {
+      if(this.props.videos[i].id === videoID) {
+        break;
+      }
+    }
+    this.props.videos[i].score = score;
+    this.props.videos[i].likes = likeStatus;
+  }
+
+  renderVotes(video) {
+    let arrowClass = "fas fa-arrow-circle-right";
+    let uparrowClass = `${video.id} ${arrowClass} ${ video.likes === true ? 'orangeArrow' : '' }`;
+    let downarrowClass = `${video.id} ${arrowClass} ${ video.likes === false ? 'blueArrow' : '' }`;
     if(this.props.isSignedIn) {
       return (
         <div className="col">
@@ -40,7 +34,7 @@ class VideoDetail extends React.Component {
             onClick={(event) => this.submitUpvote(video.id, event)} 
             id="uparrow" 
             className={uparrowClass}></i>
-          <p className="likes">{video.score}</p>
+          <p className={`likes ${video.id}`}>{video.score}</p>
           <i 
             onClick={(event) => this.submitDownvote(video.id, event)} 
             id="downarrow" 
@@ -52,7 +46,6 @@ class VideoDetail extends React.Component {
       <div className="col">
         <p className="likes">{video.score}</p>
       </div>
-
     );
   }
 
@@ -60,10 +53,12 @@ class VideoDetail extends React.Component {
     let downArrow = event.target;
     let likes = downArrow.parentNode.children[1];
     let numLikes = parseInt(likes.innerHTML);
+    let likeStatus;
     if(!downArrow.classList.contains('blueArrow')) {
       reddit.post('/downvote', {postID:postID});
       let upArrow = downArrow.parentNode.children[0];
       downArrow.classList.add('blueArrow');
+      likeStatus = false;
       if(upArrow.classList.contains('orangeArrow')) {
         numLikes -= 2;
         upArrow.classList.remove('orangeArrow');
@@ -73,7 +68,9 @@ class VideoDetail extends React.Component {
     } else {
       downArrow.classList.remove('blueArrow');
       numLikes += 1;
+      likeStatus = true;
     }
+    this.updatedVideoItem(postID, numLikes, likeStatus);
     likes.innerHTML = numLikes;
   }
   
@@ -81,10 +78,12 @@ class VideoDetail extends React.Component {
     let upArrow = event.target;
     let likes = upArrow.parentNode.children[1];
     let numLikes = parseInt(likes.innerHTML);
+    let likeStatus;
     if(!upArrow.classList.contains('orangeArrow')) {
       reddit.post('/upvote', {postID:postID});
       let downArrow = upArrow.parentNode.children[2];
       upArrow.classList.add('orangeArrow');
+      likeStatus = true;
       if(downArrow.classList.contains('blueArrow')) {
         downArrow.classList.remove('blueArrow');
         numLikes += 2;
@@ -94,12 +93,14 @@ class VideoDetail extends React.Component {
     } else {
       upArrow.classList.remove('orangeArrow');
       numLikes -= 1;
+      likeStatus = false;
     }
+    this.updatedVideoItem(postID, numLikes, likeStatus);
     likes.innerHTML = numLikes;
   }
 
   render() {
-    console.log(this.props.videoDetails);
+    console.log(this.props.videos);
     const video = this.props.selectedVideo;
     if (!video) {
       return ( 
@@ -122,9 +123,8 @@ class VideoDetail extends React.Component {
             <a href={redditLink} rel="noopener noreferrer" target="_blank">
               <i className="fab fa-reddit"></i>
             </a>
-            {this.renderVotes()}
+            {this.renderVotes(video)}
           </div>
-
         </div>
       </div>
     );
@@ -135,7 +135,8 @@ const mapStateToProps = state => {
   return { 
     selectedVideo: state.selectedVideo,
     isSignedIn: state.isSignedIn.isSignedIn ,
-    videoDetails: state.videoDetails
+    videoDetails: state.videoDetails,
+    videos: state.videos
   };
 }
 

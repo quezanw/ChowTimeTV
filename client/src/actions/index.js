@@ -18,19 +18,12 @@ from '../actions/types';
 
 import reddit from '../apis/reddit';
 
-// export const selectVideo = video => dispatch => {
-//   dispatch(videoLikeStatus(video.likes));
-//   return {
-//     type: 'SELECT_VIDEO',
-//     payload: video
-//   }
-// }
 
 export const selectVideo = video => {
-  return {
-    type: 'SELECT_VIDEO',
-    payload: video
-  }
+    return {
+      type: 'SELECT_VIDEO',
+      payload: video
+    }
 }
 
 export const videoLikeStatus = status => {
@@ -38,7 +31,12 @@ export const videoLikeStatus = status => {
     type: 'LIKE_STATUS',
     payload: status
   }
-} 
+}
+
+// export const updateSelectedVideoDetails = (video) => dispatch => {
+//   dispatch(selectVideo(video));
+//   dispatch(videoLikeStatus(video.likes));
+// }
 
 // export const upvote = async postID => {
 //   const response = await reddit.post('/upvote', { postID: postID });
