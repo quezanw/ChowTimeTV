@@ -71,12 +71,17 @@ router.get('/authorize', (req, res, next) => {
 
 router.post('/upvote', async (req, res) => {
   let response = await currentFetcher.getSubmission(req.body.postID).upvote();
-  res.send({ msg:'success', res: response });
+  res.send({res: response });
 });
 
 router.post('/downvote', async (req, res) => {
   let response = await currentFetcher.getSubmission(req.body.postID).downvote();
-  res.send({ msg:'success', res: response });
+  res.send({res: response });
+});
+
+router.post('/unvote', async (req, res) => {
+  let response = await currentFetcher.getSubmission(req.body.postID).unvote();
+  res.send({res: response });
 });
 
 router.get('/logout', (req, res, next) => {

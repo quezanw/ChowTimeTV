@@ -68,7 +68,8 @@ class VideoDetail extends React.Component {
     } else {
       downArrow.classList.remove('blueArrow');
       numLikes += 1;
-      likeStatus = true;
+      likeStatus = null;
+      reddit.post('/unvote', {postID:postID});
     }
     this.updatedVideoItem(postID, numLikes, likeStatus);
     likes.innerHTML = numLikes;
@@ -93,7 +94,8 @@ class VideoDetail extends React.Component {
     } else {
       upArrow.classList.remove('orangeArrow');
       numLikes -= 1;
-      likeStatus = false;
+      likeStatus = null;
+      reddit.post('/unvote', {postID:postID});
     }
     this.updatedVideoItem(postID, numLikes, likeStatus);
     likes.innerHTML = numLikes;
