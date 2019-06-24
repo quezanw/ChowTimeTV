@@ -1,9 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-// var snoocontroller = require('./controllers/reddit');
 var snoowrap = require('snoowrap');
 var config = require('../../config');
+
+function generateRandomString(length) {
+  var text = '';
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};
 
 const mealtimeFetcher = new snoowrap({
   userAgent: config.USER_AGENT,
@@ -13,6 +21,8 @@ const mealtimeFetcher = new snoowrap({
 });
 
 let currentFetcher = mealtimeFetcher;
+let HOST_URL = 'http://192.168.0.119';
+// let HOST_URL = 'http://localhost';
 
 var userFetcher = null;
 
@@ -26,20 +36,19 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  console.log('login hit');
   var authenticationUrl = snoowrap.getAuthUrl({
     clientId: '06_IsJue03S96Q',
     scope: ['*'],
-    redirectUri: 'http://localhost:3001/authorize',
+    redirectUri: `${HOST_URL}:3001/authorize`,
     permanent: true,
-    state: 'fe211bebc52eb3da9bef8db6e63104d3' // a random string, this could be validated when the user is redirected back
+    state: generateRandomString(16)
   });
   res.status(302).redirect(authenticationUrl);
 });
 
 router.get('/authorize', (req, res, next) => {
   var code = req.query.code || null;
-  var redirect_uri = 'http://localhost:3001/authorize';
+  var redirect_uri = `${HOST_URL}:3001/authorize`;
   var authOptions = {
     url: 'https://www.reddit.com/api/v1/access_token',
     form: {
@@ -54,7 +63,8 @@ router.get('/authorize', (req, res, next) => {
   };
 
   request.post(authOptions, function (error, response, body) {
-    if (!error && response.statusCode === 200) {
+    console.log(response.statusCode);
+    if (!error && response.statusCode === 200 && !response.body.error) {
       userFetcher = new snoowrap({
         userAgent: config.USER_AGENT,
         clientId: config.CLIENT_ID,
@@ -66,7 +76,8 @@ router.get('/authorize', (req, res, next) => {
       req.session.save();
     }
   });
-  res.redirect('http://localhost:3000');
+  res.redirect(`${HOST_URL}:3000`);
+  
 });
 
 router.post('/upvote', async (req, res) => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { upvote } from '../../actions';
 import reddit from '../../apis/reddit';
 import ReactHtmlParser from 'react-html-parser';
 import './VideoDetail.scss';
@@ -102,7 +101,6 @@ class VideoDetail extends React.Component {
   }
 
   render() {
-    console.log(this.props.videos);
     const video = this.props.selectedVideo;
     if (!video) {
       return ( 

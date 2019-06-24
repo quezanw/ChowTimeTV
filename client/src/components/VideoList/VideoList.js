@@ -7,7 +7,6 @@ class VideoList extends React.Component {
 
   render() {
     const renderList = this.props.videos.map(video => {
-      // if(!video.data.stickied)
       return (
         <VideoItem
           key={video.title}

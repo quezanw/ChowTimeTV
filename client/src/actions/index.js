@@ -33,38 +33,18 @@ export const videoLikeStatus = status => {
   }
 }
 
-// export const updateSelectedVideoDetails = (video) => dispatch => {
-//   dispatch(selectVideo(video));
-//   dispatch(videoLikeStatus(video.likes));
-// }
-
-// export const upvote = async postID => {
-//   const response = await reddit.post('/upvote', { postID: postID });
-//   console.log(response);
-// }
-
-// export const signIn = () =>  {
-//   // const response await 
-//   reddit.get('/login');
-//   console.log('signIn hit');
-//   // console.log(response);
-// }
-
 export const signOut = () => async dispatch => {
   const response = await reddit.get('/logout');
-  // console.log(response.data.signInStatus);
   dispatch({ type: "SIGNOUT", payload: response.data.signInStatus });
 };
 
 export const signInStatus = () => async dispatch => {
   const response =  await reddit.get('/');
-  // console.log(response.data.signInStatus);
   dispatch({ type: "SIGNIN", payload: response.data.signInStatus});
 }
 
 export const fetchNewVideos = () => async dispatch => {
   const response = await reddit.get(NEW);
-  // console.log(response.data);
   dispatch({ type: FETCH_NEW_VIDEOS, payload: response.data.data});
   dispatch(selectVideo(response.data.data[0]));
   dispatch(videoLikeStatus(response.data.data[0].likes));

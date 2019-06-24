@@ -1,14 +1,9 @@
 
 
 .btn-container {
-  // outline: 1px solid black;
   margin-left: auto;
-  // transition: all .5s;
 
   .signin-btn {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
 
     text-decoration: none;
     background-color: #2196F3;
@@ -33,7 +28,6 @@
     font-weight: bold;
     color: white;
     padding: .5rem;
-    // box-shadow: 2px 2px rgb(201, 200, 200);
     border-radius: .25rem;
     transition: all .25s ease-in-out;
     width: 120px;

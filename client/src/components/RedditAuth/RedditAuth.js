@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { signInStatus, signOut } from '../../actions';
 import './RedditAuth.scss';
 import snoowrap from 'snoowrap';
-// import reddit from '../../apis/reddit';
 
 class RedditAuth extends React.Component {
 
@@ -22,10 +21,13 @@ class RedditAuth extends React.Component {
 
 
   renderButton() {
+    let HOST_URL = `http://192.168.0.119:3001/authorize`;
+    console.log(HOST_URL);
+    // let HOST_URL = 'http://localhost'
     var authenticationUrl = snoowrap.getAuthUrl({
       clientId: '06_IsJue03S96Q',
       scope: ['*'],
-      redirectUri: 'http://localhost:3001/authorize',
+      redirectUri: HOST_URL,
       permanent: true,
       state: this.generateRandomString(16)
     });

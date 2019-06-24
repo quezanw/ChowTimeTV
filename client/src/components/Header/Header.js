@@ -28,7 +28,6 @@ class Header extends React.Component {
   }
 
   renderTabs = () => {
-    // const tabValues = ['new', 'hot', '5 - 7', '7 - 10', '10 - 15', '30+'];
     const tabValues = [
       {'func': this.props.fetchHotVideos, 'val': 'hot'},
       {'func': this.props.fetchFiveSevenVideos, 'val': '5 - 7'},
@@ -53,7 +52,6 @@ class Header extends React.Component {
     });
   }
 
-
   render() {
     return (
       <div className="header-component">
@@ -68,7 +66,6 @@ class Header extends React.Component {
           <RedditAuth/>
         </div>
         <div className="ui secondary pointing menu header-tabs">
-          {/* add active classname to change pointer */}
           <a 
           className="active item"
           href="#" 
@@ -82,7 +79,6 @@ class Header extends React.Component {
     );
   }
 }
-
 
 export default connect(null, 
   { 

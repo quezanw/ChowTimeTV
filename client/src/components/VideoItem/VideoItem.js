@@ -10,7 +10,6 @@ class VideoItem extends React.Component {
   }
 
   renderImg(video) {
-    // console.log(video);
     let imgSrc = video.secure_media;
     if(!imgSrc) {
       imgSrc = video_placeholder;
@@ -27,7 +26,6 @@ class VideoItem extends React.Component {
     );
   }
 
-  // implement regex that can remove the timestamp from the title ie: '[9:10]'
   adjustTitleLength(str) {
     if(str) {
       let regex = /\[\d+:\d+\]/g;
@@ -57,7 +55,6 @@ class VideoItem extends React.Component {
       </div>
     );
   }
-
 }
 
 export default connect(null,{ selectVideo })(VideoItem);
