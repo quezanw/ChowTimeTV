@@ -21,12 +21,13 @@ const mealtimeFetcher = new snoowrap({
 });
 
 let currentFetcher = mealtimeFetcher;
-let HOST_URL = 'http://192.168.0.119';
-// let HOST_URL = 'http://localhost';
+// let HOST_URL = 'http://192.168.0.119';
+let HOST_URL = 'http://localhost';
 
 var userFetcher = null;
 
-router.get('/', (req, res) => {
+router.get('/status', (req, res) => {
+  console.log('ping: ' + req.session.signedIn);
   if(!req.session.signedIn) {
     req.session.signedIn = false;
     res.status(200).send({signInStatus: req.session.signedIn});
@@ -36,6 +37,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+  console.log('ping: login');
   var authenticationUrl = snoowrap.getAuthUrl({
     clientId: '06_IsJue03S96Q',
     scope: ['*'],
@@ -76,7 +78,8 @@ router.get('/authorize', (req, res, next) => {
       req.session.save();
     }
   });
-  res.redirect(`${HOST_URL}:3000`);
+  // res.redirect(`${HOST_URL}:3000`);
+  res.redirect(`${HOST_URL}:3001`);
   
 });
 
@@ -159,6 +162,13 @@ router.get('/30plus', async (req, res, next) => {
   } catch(error) {
     res.send(error);
   }
+});
+
+// router.get('*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '/public/build', 'index.html'));
+// });
+router.all("*", (req,res,next) => {
+  res.sendFile(path.resolve("./public/build/index.html"))
 });
 
 module.exports = router;

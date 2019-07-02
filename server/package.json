@@ -2,6 +2,7 @@
   "name": "server",
   "version": "0.0.0",
   "private": true,
+  "proxy": "http://localhost:3000/",
   "scripts": {
     "start": "nodemon ./bin/www"
   },
@@ -17,6 +18,7 @@
     "mongoose": "^5.4.6",
     "morgan": "~1.9.0",
     "request": "^2.88.0",
+    "serve": "^11.0.2",
     "snoowrap": "^1.16.0"
   }
 }

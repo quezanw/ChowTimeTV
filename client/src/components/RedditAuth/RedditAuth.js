@@ -21,9 +21,9 @@ class RedditAuth extends React.Component {
 
 
   renderButton() {
-    let HOST_URL = `http://192.168.0.119:3001/authorize`;
-    console.log(HOST_URL);
-    // let HOST_URL = 'http://localhost'
+    // let HOST_URL = `http://192.168.0.119:3001/authorize`;
+    // console.log(HOST_URL);
+    let HOST_URL = 'http://localhost:3001/authorize';
     var authenticationUrl = snoowrap.getAuthUrl({
       clientId: '06_IsJue03S96Q',
       scope: ['*'],

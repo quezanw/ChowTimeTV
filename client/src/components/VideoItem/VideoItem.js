@@ -27,6 +27,9 @@ class VideoItem extends React.Component {
   }
 
   adjustTitleLength(str) {
+    if(str.length >= 100) {
+      return `${str.slice(0, 90)}...`;
+    }
     if(str) {
       let regex = /\[\d+:\d+\]/g;
       str = str.replace(regex, '');
@@ -40,20 +43,24 @@ class VideoItem extends React.Component {
     if(video.title) {
       videoLength = video.title.match(regex);
     }
-    return (
-      <div 
-          key={video.id} 
-          className="video-item"
-          onClick={ () => this.props.selectVideo(video)}>
-        <div className="img-container">
-          {this.renderImg(video)}
-          <span className="video-length">{videoLength}</span>
+    if(video['secure_media'] === null) {
+      return (<div></div>);
+    } else {
+      return (
+        <div 
+            key={video.id} 
+            className="video-item"
+            onClick={ () => this.props.selectVideo(video)}>
+          <div className="img-container">
+            {this.renderImg(video)}
+            <span className="video-length">{videoLength}</span>
+          </div>
+          <div className="video-item-title">
+            {this.adjustTitleLength(video.title)}
+          </div>
         </div>
-        <div className="video-item-title">
-          {this.adjustTitleLength(video.title)}
-        </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

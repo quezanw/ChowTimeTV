@@ -39,7 +39,7 @@ export const signOut = () => async dispatch => {
 };
 
 export const signInStatus = () => async dispatch => {
-  const response =  await reddit.get('/');
+  const response =  await reddit.get('/status');
   dispatch({ type: "SIGNIN", payload: response.data.signInStatus});
 }
 
