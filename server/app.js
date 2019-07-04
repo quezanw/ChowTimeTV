@@ -5,16 +5,19 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var session = require('express-session');
-
 var router = require('./routes/index');
-
 var app = express();
 
-var allowedOrigins = ['http://localhost:3000',
+app.options('*', cors());
+var allowedOrigins = [
+                      'http://localhost:3000',
                       'http://localhost:3001',
                       'http://192.168.0.119:3000',
                       'http://192.168.0.119:3001',
-                      'https://chowtime-tv.herokuapp.com/'
+                      'http://chowtime-tv.herokuapp.com',
+                      'http://0.0.0.0:3000',
+                      'http://0.0.0.0:3001',
+
                     ];
 
 app.use(cors({
@@ -33,6 +36,7 @@ app.use(cors({
     return callback(null, true);
   },  credentials: true
 }));
+
 // app.use(cors({credentials: true, origin: true}));
 
 // view engine setup

@@ -37,7 +37,7 @@ router.get('/status', (req, res) => {
 router.get('/login', (req, res) => {
   console.log('ping: login');
   var authenticationUrl = snoowrap.getAuthUrl({
-    clientId: '06_IsJue03S96Q',
+    clientId: config.CLIENT_ID,
     scope: ['*'],
     redirectUri: config.REDIRECT_URI,
     permanent: true,
@@ -76,7 +76,7 @@ router.get('/authorize', (req, res, next) => {
     }
   });
   // res.redirect(`${HOST_URL}:3000`);
-  res.redirect('https://localhost:3001');
+  res.redirect('http://localhost:3001');
   
 });
 
