@@ -21,20 +21,17 @@ class RedditAuth extends React.Component {
 
 
   renderButton() {
+    console.log(process.env);
     // let HOST_URL = `http://192.168.0.119:3001/authorize`;
-    // console.log(HOST_URL);
-    // let HOST_URL = 'http://localhost:3001/authorize';
-    let HOST_URL = 'https://chowtime-tv.herokuapp.com/authorize';
+    let HOST_URL = 'http://localhost:3001/authorize';
     var authenticationUrl = snoowrap.getAuthUrl({
-      clientId: '06_IsJue03S96Q',
+      clientId: process.env.REACT_APP_CLIENT_ID,
       scope: ['*'],
       redirectUri: HOST_URL,
       permanent: true,
       state: this.generateRandomString(16)
     });
     
-    // window.location = authenticationUrl;
-    // const url = `https://www.reddit.com/api/v1/authorize?client_id=06_IsJue03S96Q&response_type=code&state=${this.generateRandomString(16)}&redirect_uri=http://localhost:3001/authorize&duration=permanent&scope=vote%20idenity%20edit%20flair%20history%20save%20submit%20subscribe`;
     if(!this.props.isSignedIn) {
       return (
         <a className='signin-btn oauth-btn' href={authenticationUrl}>

@@ -43,8 +43,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('keyboardkitteh'));
+app.use(express.static(path.join(__dirname, '../client/build')));
 // app.use(express.static(path.join(__dirname, '/public/build')));
-app.use(express.static(path.join(__dirname, '/public/build')));
 
 app.use(session({
   secret: 'keyboardkitteh',
@@ -70,10 +70,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// app.get('/', function(req, res) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
 
 
 
