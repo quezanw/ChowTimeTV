@@ -48,6 +48,8 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/authorize', (req, res, next) => {
+  console.log(req.query)
+  console.log(req);
   var code = req.query.code || null;
   var authOptions = {
     url: 'https://www.reddit.com/api/v1/access_token',
@@ -66,6 +68,8 @@ router.get('/authorize', (req, res, next) => {
     console.log("POST OAUTH");
     console.log(response.statusCode);
     console.log(response.body);
+    console.log(body);
+    console.log(error);
     if (!error && response.statusCode === 200 && !response.body.error) {
       userFetcher = new snoowrap({
         userAgent: config.USER_AGENT,
