@@ -37,18 +37,13 @@ app.use(cors({
   },  credentials: true
 }));
 
-// app.use(cors({credentials: true, origin: true}));
-
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('keyboardkitteh'));
 app.use(express.static(path.join(__dirname, '../client/build')));
 // app.use(express.static(path.join(__dirname, '/public/build')));
+app.set('trust proxy', 1);
 
 app.use(session({
   secret: 'keyboardkitteh',
