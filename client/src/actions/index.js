@@ -45,6 +45,7 @@ export const signInStatus = () => async dispatch => {
 
 export const fetchNewVideos = () => async dispatch => {
   const response = await reddit.get(NEW);
+  console.log(response);
   dispatch({ type: FETCH_NEW_VIDEOS, payload: response.data.data});
   dispatch(selectVideo(response.data.data[0]));
   dispatch(videoLikeStatus(response.data.data[0].likes));
