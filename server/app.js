@@ -47,10 +47,10 @@ app.set('trust proxy', 1);
 
 app.use(session({
   secret: 'keyboardkitteh',
-  key : 'sid',
-  proxy : true,
+  // key : 'sid',
+  // proxy : true,
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { secure: false }
 }));
 
