@@ -75,8 +75,8 @@ router.get('/authorize', (req, res, next) => {
       req.session.save();
     }
   });
-  // res.redirect(`${HOST_URL}:3000`);
-  res.redirect('http://localhost:3001');
+  // res.redirect(`localhost:3001`);
+  res.redirect('https://chowtime-tv.herokuapp.com/');
   
 });
 
