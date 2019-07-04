@@ -21,7 +21,6 @@ const mealtimeFetcher = new snoowrap({
 });
 
 let currentFetcher = mealtimeFetcher;
-let HOST_URL = 'http://localhost';
 
 var userFetcher = null;
 
@@ -40,7 +39,7 @@ router.get('/login', (req, res) => {
   var authenticationUrl = snoowrap.getAuthUrl({
     clientId: '06_IsJue03S96Q',
     scope: ['*'],
-    redirectUri: `${HOST_URL}:3001/authorize`,
+    redirectUri: config.REDIRECT_URI,
     permanent: true,
     state: generateRandomString(16)
   });
@@ -49,12 +48,11 @@ router.get('/login', (req, res) => {
 
 router.get('/authorize', (req, res, next) => {
   var code = req.query.code || null;
-  var redirect_uri = `${HOST_URL}:3001/authorize`;
   var authOptions = {
     url: 'https://www.reddit.com/api/v1/access_token',
     form: {
       code: code,
-      redirect_uri: redirect_uri,
+      redirect_uri: config.REDIRECT_URI,
       grant_type: 'authorization_code'
     },
     headers: {
@@ -78,7 +76,7 @@ router.get('/authorize', (req, res, next) => {
     }
   });
   // res.redirect(`${HOST_URL}:3000`);
-  res.redirect(`${HOST_URL}:3001`);
+  res.redirect('https://localhost:3001');
   
 });
 
