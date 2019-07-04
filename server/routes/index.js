@@ -67,7 +67,7 @@ router.get('/authorize', (req, res, next) => {
   request.post(authOptions, function (error, response, body) {
     console.log("POST OAUTH");
     console.log(response.statusCode);
-    console.log(response.body);
+    console.log(response);
     console.log(body);
     console.log(error);
     if (!error && response.statusCode === 200 && !response.body.error) {
