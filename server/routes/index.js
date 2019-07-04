@@ -63,7 +63,9 @@ router.get('/authorize', (req, res, next) => {
   };
 
   request.post(authOptions, function (error, response, body) {
+    console.log("POST OAUTH");
     console.log(response.statusCode);
+    console.log(response.body);
     if (!error && response.statusCode === 200 && !response.body.error) {
       userFetcher = new snoowrap({
         userAgent: config.USER_AGENT,
@@ -75,6 +77,7 @@ router.get('/authorize', (req, res, next) => {
       req.session.signedIn = true;
       req.session.save();
     }
+    console.log(userFetcher)
   });
   // res.redirect(`localhost:3001`);
   res.redirect('https://chowtime-tv.herokuapp.com/');
@@ -105,7 +108,6 @@ router.get('/logout', (req, res, next) => {
 
 
 router.get('/new', async (req, res, next) => {
-  // console.log(currentFetcher);
   try {
     const response = await currentFetcher.getSubreddit('mealtimevideos').getNew({limit: 10});
     res.json({data: response});
