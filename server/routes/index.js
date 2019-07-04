@@ -26,6 +26,7 @@ var userFetcher = null;
 
 router.get('/status', (req, res) => {
   console.log('ping: ' + req.session.signedIn);
+  console.log(req.session);
   if(!req.session.signedIn) {
     req.session.signedIn = false;
     res.status(200).send({signInStatus: req.session.signedIn});
