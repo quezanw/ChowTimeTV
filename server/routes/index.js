@@ -105,8 +105,7 @@ router.get('/logout', (req, res, next) => {
 
 
 router.get('/new', async (req, res, next) => {
-  console.log('PING: NEW');
-  console.log(currentFetcher);
+  // console.log(currentFetcher);
   try {
     const response = await currentFetcher.getSubreddit('mealtimevideos').getNew({limit: 10});
     res.json({data: response});
