@@ -55,8 +55,8 @@ router.get('/authorize', (req, res, next) => {
     url: 'https://www.reddit.com/api/v1/access_token',
     form: {
       code: code,
-      redirect_uri: config.REDIRECT_URI,
-      grant_type: 'authorization_code'
+      redirectUri: config.REDIRECT_URI,
+      grantType: 'authorization_code'
     },
     headers: {
       'Authorization': 'Basic ' + (new Buffer(config.CLIENT_ID + ':' + config.CLIENT_SECRET).toString('base64'))
