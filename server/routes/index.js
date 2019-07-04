@@ -22,7 +22,8 @@ const mealtimeFetcher = new snoowrap({
 
 let currentFetcher = mealtimeFetcher;
 // let HOST_URL = 'http://192.168.0.119';
-let HOST_URL = 'http://localhost';
+// let HOST_URL = 'http://localhost';
+let HOST_URL = 'https://chowtime-tv.herokuapp.com/';
 
 var userFetcher = null;
 
