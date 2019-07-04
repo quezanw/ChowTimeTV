@@ -52,6 +52,8 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(session({
   secret: 'keyboardkitteh',
+  key : 'sid',
+  proxy : true,
   resave: true,
   saveUninitialized: true,
   cookie: { secure: false }
