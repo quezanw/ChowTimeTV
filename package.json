@@ -7,7 +7,7 @@
     "client": "cd client && npm start",
     "server": "cd server && npm start",
     "start-test": "concurrently --kill-others \"npm run server\" \"npm run client\"",
-    "start": "\"npm run server\""
+    "start": "cd server && npm start"
   },
   "repository": {
     "type": "git",
