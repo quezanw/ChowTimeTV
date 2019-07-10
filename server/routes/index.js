@@ -25,8 +25,6 @@ let currentFetcher = mealtimeFetcher;
 var userFetcher = null;
 
 router.get('/status', (req, res) => {
-  console.log('ping: ' + req.session.signedIn);
-  console.log(req.session);
   if(!req.session.signedIn) {
     req.session.signedIn = false;
     res.status(200).send({signInStatus: req.session.signedIn});
@@ -36,7 +34,6 @@ router.get('/status', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  console.log('ping: login');
   var authenticationUrl = snoowrap.getAuthUrl({
     clientId: config.CLIENT_ID,
     scope: ['*'],
@@ -48,8 +45,6 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/authorize', (req, res, next) => {
-  console.log(req.query)
-  console.log(req);
   var code = req.query.code || null;
   var authOptions = {
     url: 'https://www.reddit.com/api/v1/access_token',
@@ -65,11 +60,6 @@ router.get('/authorize', (req, res, next) => {
   };
 
   request.post(authOptions, function (error, response, body) {
-    console.log("POST OAUTH");
-    console.log(response.statusCode);
-    console.log(response);
-    console.log(body);
-    console.log(error);
     if (!error && response.statusCode === 200 && !response.body.error) {
       userFetcher = new snoowrap({
         userAgent: config.USER_AGENT,
@@ -169,9 +159,6 @@ router.get('/30plus', async (req, res, next) => {
   }
 });
 
-// router.get('*', function(req, res) {
-//   res.sendFile(path.join(__dirname, '/public/build', 'index.html'));
-// });
 router.all("*", (req,res,next) => {
   res.sendFile(path.resolve("./public/build/index.html"))
 });

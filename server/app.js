@@ -17,7 +17,6 @@ var allowedOrigins = [
                       'https://chowtime-tv.herokuapp.com',
                       'http://0.0.0.0:3000',
                       'http://0.0.0.0:3001',
-
                     ];
 
 app.use(cors({
@@ -42,13 +41,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('keyboardkitteh'));
 app.use(express.static(path.join(__dirname, '../client/build')));
-// app.use(express.static(path.join(__dirname, '/public/build')));
 app.set('trust proxy', 1);
 
 app.use(session({
   secret: 'keyboardkitteh',
-  // key : 'sid',
-  // proxy : true,
   resave: true,
   saveUninitialized: false,
   cookie: { secure: false }
