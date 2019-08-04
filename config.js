@@ -36,6 +36,11 @@ api calls to handle upvotes, downotes, unvotes
 
 regex to grab and remove video length embeded in the title
 
+upvote/downvote/unvote action creator - used in videodetail component
+when button clicked ->> action is called ->> post request to the express server 
+->> express server makes post request to reddit ->> dispatch video id to reducers
+->> reducer loops through videos and changes the likes and status
+
 
 
 
